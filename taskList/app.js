@@ -12,21 +12,34 @@ loadEventListeners();
 function loadEventListeners() {
   //add task event
   form.addEventListener('submit', addTask);
+  //remove task event
+  taskList.addEventListener('click', removeTask);
 }
 
-function addTask(e){
+function addTask(e) {
   e.preventDefault();
 
-  if(taskInput.value === ''){
+  if (taskInput.value === '') {
     alert('add a task');
   }
   const li = document.createElement('li');
   li.className = 'collection-item';
   li.appendChild(document.createTextNode(taskInput.value));
   const link = document.createElement('a');
-  link.className='delete-item secondary-content';
+  link.className = 'delete-item secondary-content';
   link.innerHTML = '<i class="fas fa-times"></i>';
+  link.style.cursor = 'pointer';
   li.appendChild(link);
   taskList.appendChild(li);
   taskInput.value = '';
+}
+
+function removeTask(e) {
+  e.preventDefault();
+  if (e.target.parentElement.classList.contains('delete-item')) {
+    if (confirm('Are You Sure ?')) {
+      const li = e.target.parentElement.parentElement;
+      li.remove();
+    }
+  }
 }
