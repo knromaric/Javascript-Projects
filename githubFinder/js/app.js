@@ -10,13 +10,14 @@ searchInput.addEventListener('keyup', (e) => {
   if (userText !== '') {
     Github.getUsers(userText)
       .then(data => {
-        if (data.profile.message !== 'Not Found') {
-          //show profile
+        if (data.profile.message === 'Not Found') {
+          //show alert message
         } else {
-          //show alert
+          UI.showProfile(data.profile);
         }
       });
   } else {
     // Clear profile
+    UI.clearProfile();
   }
 });
