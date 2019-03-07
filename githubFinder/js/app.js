@@ -16,10 +16,12 @@ searchInput.addEventListener('keyup', (e) => {
           ui.showAlert('User Not Found', 'alert alert-danger');
         } else {
           ui.showProfile(data.profile);
+          ui.showRepos(data.repos);
         }
       });
   } else {
     // Clear profile
     ui.clearProfile();
+    //ui.clearRepos();
   }
 });
