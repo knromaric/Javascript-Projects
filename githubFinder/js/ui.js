@@ -3,8 +3,9 @@ class UI {
     this.profile = document.getElementById('profile');
   }
 
-  static showProfile(user) {
-    document.getElementById('profile').innerHTML = `
+/**show User Profile */
+  showProfile(user) {
+    this.profile.innerHTML = `
     <div class="card card-body mb-3">
     <div class="row">
       <div class="col-md-3">
@@ -30,4 +31,36 @@ class UI {
   <div id="repos"></div>
     `;
   }
+  /**show alert message */
+  showAlert(message, className) {
+    //clear any remaining alert
+    this.clearAlert();
+    const div = document.createElement('div');
+    div.className = className;
+    div.appendChild(document.createTextNode(message));
+    const container = document.querySelector('.search-container');
+    const search = document.querySelector('.search');
+    container.insertBefore(div, search);
+
+    //timeout after 3 second
+    setTimeout(()=>{
+      this.clearAlert();
+    }, 3000);
+  }
+
+  /**Clear Alert message */
+  clearAlert() {
+    const currentAlert = document.querySelector('.alert');
+    if(currentAlert){
+      currentAlert.remove();
+    }
+  }
+
+  /**Clear user profile */
+  clearProfile() {
+    this.profile.innerHTML = '';
+  }
+
+
+
 }

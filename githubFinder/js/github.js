@@ -4,7 +4,7 @@ class Github {
     this.client_secret = '24e11b6b4930a7e0b275eacbbbc940d0c590da40';
   }
 
-  static async getUsers(user) {
+   async getUsers(user) {
     const profileResponse = await fetch(`https://api.github.com/users/${user}?client_id=${this.client_id}&client_secret=${this.client_secret}`);
 
     const profile= await profileResponse.json();

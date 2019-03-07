@@ -1,4 +1,6 @@
-//var github = new Github();
+//initializing object
+const github = new Github();
+const ui = new UI();
 
 //Search input
 const searchInput = document.querySelector('#search-user');
@@ -8,16 +10,16 @@ searchInput.addEventListener('keyup', (e) => {
   //get input text
   const userText = e.target.value;
   if (userText !== '') {
-    Github.getUsers(userText)
+    github.getUsers(userText)
       .then(data => {
         if (data.profile.message === 'Not Found') {
-          //show alert message
+          ui.showAlert('User Not Found', 'alert alert-danger');
         } else {
-          UI.showProfile(data.profile);
+          ui.showProfile(data.profile);
         }
       });
   } else {
     // Clear profile
-    UI.clearProfile();
+    ui.clearProfile();
   }
 });
