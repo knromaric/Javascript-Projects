@@ -22,6 +22,5 @@ searchInput.addEventListener('keyup', (e) => {
   } else {
     // Clear profile
     ui.clearProfile();
-    //ui.clearRepos();
   }
 });
