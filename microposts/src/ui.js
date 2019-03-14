@@ -28,7 +28,34 @@ class UI {
     });
 
     this.posts.innerHTML = output;
+  }
 
+  showAlert(message, className) {
+    this.clearAlert();
+    const div = document.createElement('div');
+    div.className = className;
+    div.appendChild(document.createTextNode(message));
+    const container = document.querySelector('.postsContainer');
+    const target  = document.querySelector('.target');
+    container.insertBefore(div, target);
+
+    //timeout
+
+    setTimeout(() => {
+     this.clearAlert();
+    }, 2000);
+  }
+
+  clearAlert() {
+    const currentAlert = document.querySelector('.alert');
+    if(currentAlert){
+      currentAlert.remove();
+    }
+  }
+
+  clearInputs(){
+    this.titleInput.value = '';
+    this.bodyInput.value = '';
   }
 }
 
