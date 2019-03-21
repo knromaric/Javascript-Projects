@@ -1,6 +1,6 @@
 const url = '../docs/photography.pdf';
 let pdfDoc = null,
-    pageNum = 1,
+    pageNum = 2,
     pageIsRendering = false,
     pageNumIsPending = null;
 
@@ -71,7 +71,16 @@ pdfjsLib.getDocument(url).promise.then(pdfDoc_=>{
   
   document.querySelector("#page-count").textContent = pdfDoc.numPages;
   renderPage(pageNum);
-});
+})
+  .catch(error => {
+    //display error
+    const div = document.createElement('div');
+    div.className = "error";
+    div.appendChild(document.createTextNode(error.message));
+    document.querySelector('body').insertBefore(div, canvas);
+    //remove the topbar
+    document.querySelector('.top-bar').style.display = 'none';
+  });
 
 //button events
 document.querySelector("#prev-page").addEventListener('click', showPrevPage);
